@@ -640,3 +640,5 @@ let fast_moves = [
         "type": "Grass"
 }
 ]
+
+export default fast_moves;
