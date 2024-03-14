@@ -9,19 +9,20 @@ export class Pokemon{
         this._base_attack = attack, 
         this._base_defense = defense,
         this._base_stamina = stamina
-        Pokemon.allPokemons = new Object (
-            {
-                id : {
-                }
-            });
     }
+
 }
 
 function importPokemon() {
-
+    Pokemon.allPokemons = new Object ();
     pokemon.forEach(poke => {
-        p = new Pokemon(poke.pokemon_id,poke.pokemon_name,poke.form,poke.base_attack,poke.defense,poke.base_stamina);
+        if (poke.form == "Normal") {
+            let p = new Pokemon(poke.pokemon_id,poke.pokemon_name,poke.form,poke.base_attack,poke.defense,poke.base_stamina);
+            Pokemon.allPokemons[p._pokemon_id] = p;
+        }
         
     })};
 
 importPokemon();
+
+console.log(Pokemon.allPokemons)
