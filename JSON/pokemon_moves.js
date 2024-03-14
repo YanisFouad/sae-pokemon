@@ -18000,3 +18000,5 @@ let pokemon_moves = [
         "pokemon_name": "Calyrex"
     }
 ]
+
+export default pokemon_moves;
