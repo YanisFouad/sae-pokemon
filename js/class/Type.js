@@ -6,10 +6,9 @@ class Type {
     static allTypes;
 
     constructor(type) {
-        this._type = type;
+        this._type = {title: type, type: type_effectiveness[type]};
         Type.allTypes = new Object();
         this.initAllTypes();
-        this._effectiveness = new Object(type_effectiveness[this._type]);;
     }
 
     initAllTypes() {
@@ -28,7 +27,13 @@ class Type {
         return this._type;
     }
 
-    get effectiveness() {
-        return this._effectiveness;
+    toString() {
+        let msg = "Title : " + this.type.title + "\nEfficiency : \n";
+
+        for(let [key, efficiency] of Object.entries(this._type.type)) {
+            msg += "\t- " + key + " : " + efficiency + "\n";
+        }
+
+        return msg;
     }
 }
