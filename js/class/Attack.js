@@ -3,12 +3,11 @@ import charged_moves from "../../JSON/charged_moves.js";
 
 class Attack {
 
-    static allAttacks;
+    static allAttacks = new Object();
 
     constructor(attackId) {
         this._attackId = attackId;
         this._attack = this.initAttack();
-        Attack.allAttacks = new Object();
         this.initAllAttacks();
     }
 
@@ -27,12 +26,8 @@ class Attack {
     }
 
     initAllAttacks() {
-        for (let [key, move] of Object.entries(fast_moves)) {
-            Attack.allAttacks[move.move_id] = move;
-        }
-        
-        for (let [key, move] of Object.entries(charged_moves)) {
-            Attack.allAttacks[move.move_id] = move;
+        if(!Attack.allAttacks[this._attack.move_id]){
+            Attack.allAttacks[this._attack.move_id] = this._attack
         }
     }
 
@@ -40,7 +35,3 @@ class Attack {
         return this._attack;
     }
 }
-
-let a = new Attack(45)
-
-console.log(a.attack);
