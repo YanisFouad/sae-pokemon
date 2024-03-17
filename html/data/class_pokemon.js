@@ -1,4 +1,4 @@
-import pokemon from "../../JSON/pokemon.js"
+import pokemon from "./pokemon.js"
 
 export class Pokemon{
     static allPokemons;

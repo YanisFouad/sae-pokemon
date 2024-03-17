@@ -1,7 +1,7 @@
-import fast_moves from "../../JSON/fast_moves.js";
-import charged_moves from "../../JSON/charged_moves.js";
+import fast_moves from "./fast_moves.js";
+import charged_moves from "./charged_moves.js";
 
-class Attack {
+export class Attack {
 
     static allAttacks = new Object();
 
