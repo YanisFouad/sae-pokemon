@@ -1,7 +1,7 @@
 import pokemon_type from "../../JSON/pokemon_type.js";
 import type_effectiveness from "../../JSON/type_effectiveness.js";
 
-class Type {
+export class Type {
 
     static allTypes = new Object();
 
