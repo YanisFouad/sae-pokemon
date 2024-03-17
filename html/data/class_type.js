@@ -1,5 +1,4 @@
-import pokemon_type from "../JSON/pokemon_type.js";
-import type_effectiveness from "../JSON/type_effectiveness.js";
+import type_effectiveness from "./type_effectiveness.js";
 
 export class Type {
 
@@ -30,8 +29,3 @@ export class Type {
         return msg;
     }
 }
-
-let a = new Type("Grass");
-let b = new Type("Poison");
-
-console.log(Type.allTypes)

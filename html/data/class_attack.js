@@ -5,21 +5,21 @@ export class Attack {
 
     static allAttacks = new Object();
 
-    constructor(attackId) {
-        this._attackId = attackId;
+    constructor(attackName) {
+        this._attackName = attackName;
         this._attack = this.initAttack();
         this.initAllAttacks();
     }
 
     initAttack() {
         for (let [key, move] of Object.entries(fast_moves)) {
-            if(move.move_id == this._attackId){
+            if(move.name == this._attackName){
                 return move;
             }
         }
         
         for (let [key, move] of Object.entries(charged_moves)) {
-            if(move.move_id == this._attackId){
+            if(move.name == this._attackName){
                 return move;
             }
         }

@@ -1,7 +1,7 @@
 import pokemon from "./pokemon.js"
 import { Type } from "./class_type.js";
 import { Attack } from "./class_attack.js";
-import pokemon_types from "./JSON/pokemon_type.js";
+import pokemon_types from "./pokemon_type.js";
 import pokemon_moves from "./pokemon_moves.js";
 
 
@@ -19,16 +19,18 @@ export class Pokemon{
         this._chargedMove =charged
     }
     getTypes(){return this._type;}
-    getAttacks(){return [].concat(this._chargedMove, this._fastMove)}
+    getAttacks(){return {...this._fastMove, ...this._chargedMove}}
 
 }
+
+importPokemon();
 
 function importPokemon() {
     Pokemon.allPokemons = new Object ();
     pokemon.forEach(poke => {
         if (poke.form == "Normal") {
             let p = new Pokemon(poke.pokemon_id,poke.pokemon_name,poke.form,poke.base_attack,poke.defense,poke.base_stamina,
-                                getPokemonType(poke.pokemon_id),getPokemonAttack(poke.pokemon_id)[0],getPokemonAttack(poke.pokemon_id)[1]);
+                                getPokemonType(poke.pokemon_id),getPokemonFastAttack(poke.pokemon_id),getPokemonChargedAttack(poke.pokemon_id));
             Pokemon.allPokemons[p._pokemon_id] = p;
         }
         
@@ -36,77 +38,100 @@ function importPokemon() {
 
 function getPokemonType(id) {
     let types;
+    let pokemonTypes = new Object();
+    let pokemonType;
+
     pokemon_types.forEach(typePoke =>{
         if (typePoke.form == "Normal" && typePoke.pokemon_id == id) {
             types = typePoke.type;
             types.forEach(type => {
-                new Type(type)
+                pokemonType = new Type(type);
+                pokemonTypes[pokemonType.type.title] = pokemonType;
             });
         }})
-        return types;
+        return pokemonTypes;
 }
-function getPokemonAttack(id) {
+
+function getPokemonFastAttack(id) {
     let fast;
-    let charged;
+    let attacks = new Object();
+    let attack;
     pokemon_moves.forEach(movePoke =>{
         if (movePoke.form == "Normal" && movePoke.pokemon_id == id) {
             fast = movePoke.fast_moves;
-            charged = movePoke.charged_moves;
             fast.forEach(move => {
-                new Attack(move)
-            });
-            charged.forEach(move => {
-                new Attack(move)
+                attack = new Attack(move)
+                attacks[attack._attack.move_id] = attack;
             });
         }})
-        return fast,charged;
+        return attacks;
 }
-importPokemon();
 
-console.log(Pokemon.allPokemons)
 
-/*
-function getPokemonByType(typeName) {
-    let tab = [];
-    Pokemon.allPokemons.forEach(poke => {
-        poke.id.getTypes().forEach(type =>{
-            if (type = typeName ){
-                tab.push(poke);
+function getPokemonChargedAttack(id) {
+    let charged;
+    let attacks = new Object();
+    let attack;
+    pokemon_moves.forEach(movePoke =>{
+        if (movePoke.form == "Normal" && movePoke.pokemon_id == id) {
+            charged = movePoke.charged_moves;
+
+            charged.forEach(move => {
+                attack = new Attack(move)
+                attacks[attack._attack.move_id] = attack;
+            });
+        }})
+        return attacks;
+}
+
+export function getPokemonsByType(typeName) {
+    return Object.values(Pokemon.allPokemons).filter((pokemon) => {
+        return pokemon.getTypes().hasOwnProperty(typeName);
+    });
+}
+
+export function getPokemonsByAttack(attackName) {
+    return Object.values(Pokemon.allPokemons).filter((pokemon) => {
+        for(const [key, attack] of Object.entries(pokemon.getAttacks())) {
+            if (attack._attack.name == attackName) {
+                return pokemon;
             }
-        })
+        }
     })
-    return tab;
 }
 
-function getPokemonByAttack(attackName) {
-    let tab = [];
-    Pokemon.allPokemons.forEach(poke => {
-        poke.id.getAttacks().forEach(attack =>{
-            if (attack.name = attackName ){
-                tab.push(poke);
-            }
-        })
+export function getAttacksByType(attackType) {
+    return Object.values(Attack.allAttacks).filter((attack) => {
+        if (attack.type == attackType) {
+            return attack;
+        }
     })
-    return tab;
 }
-console.log(getPokemonByAttack("Wrap"))
 
-function sortPokemonByName(){
-    Pokemon.allPokemons.sort((a, b) => {
-        const nameA = a._pokemon_name.toUpperCase(); // ignore upper and lowercase
-        const nameB = b._pokemon_name.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
+export function sortPokemonsByName(){
+    return Object.values(Pokemon.allPokemons).sort((lastPokemon, currentPokemon) => {
+        if (lastPokemon._pokemon_name < currentPokemon._pokemon_name) {
+            return -1;
         }
-        if (nameA > nameB) {
-          return 1;
+
+        if (lastPokemon._pokemon_name > currentPokemon._pokemon_name) {
+            return 1;
         }
+
         return 0;
-      });
+    })
 }
 
-function sortPokemonByStamina(){
-    Pokemon.allPokemons.sort((a,b) => a.value - b.value);
-}
+export function sortPokemonsByStamina(){
+    return Object.values(Pokemon.allPokemons).sort((lastPokemon, currentPokemon) => {
+        if (lastPokemon._base_stamina > currentPokemon._base_stamina) {
+            return -1;
+        }
+        
+        if (lastPokemon._base_stamina < currentPokemon._base_stamina) {
+            return 1;
+        }
 
-*/
+        return 0;
+    })
+}

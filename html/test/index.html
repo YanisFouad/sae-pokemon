@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="../data/class_pokemon.js"></script>
-    <title>Document</title>
+    <script type="module" src="./test.js"></script>
+    <title>Test Pokemon</title>
 </head>
+
+<style>
+    section {
+        margin: auto;
+        margin-top: 20px;
+        width: fit-content;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    input {
+        margin-left: 10px;
+    }
+</style>
+
 <body>
-    
+    <section>
+        <form id="form-get-type">
+            <label for="get-type">getPokemonsByType(typeName)</label>
+            <input type="text" name="get-type" id="get-type">
+            <button type="submit" id="submit-get-type">Log</button>
+        </form>
+        <form id="form-get-attack">
+            <label for="get-attack">getPokemonsByAttack(attackName)</label>
+            <input type="text" name="get-attack" id="get-attack">
+            <button type="submit" id="submit-get-attack">Log</button>
+        </form>
+        <form id="form-get-attack-type">
+            <label for="get-attack-type">getAttacksByType(typeName)</label>
+            <input type="text" name="get-attack" id="get-attack-type">
+            <button type="submit" name="submit-get-attack-type" id="submit-get-attack-type">Log</button>
+        </form>
+        <form id="form-sort-name">
+            <label for="submit-sort-name">sortPokemonByName()</label>
+            <button type="submit" name="submit-sort-name" id="submit-sort-name">Log</button>
+        </form>
+        <form id="form-sort-stamina">
+            <label for="submit-sort-stamina">sortPokemonByStamina()</label>
+            <button type="submit" name="submit-sort-stamina" id="submit-sort-stamina">Log</button>
+        </form>
+    </section>
 </body>
 </html>
