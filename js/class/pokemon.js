@@ -15,11 +15,11 @@ export class Pokemon{
         this._base_defense = defense,
         this._base_stamina = stamina,
         this._type = type,
-        this.fastMove = fast,
-        this.chargedMove =charged
+        this._fastMove = fast,
+        this._chargedMove =charged
     }
     getTypes(){return this._type;}
-    getAttacks(){return [].concat(this.chargedMove, this.fastMove)}
+    getAttacks(){return [].concat(this._chargedMove, this._fastMove)}
 
 }
 
@@ -49,9 +49,9 @@ function getPokemonAttack(id) {
     let fast;
     let charged;
     pokemon_moves.forEach(movePoke =>{
-        if (typePoke.form == "Normal" && movePoke.pokemon_id == id) {
+        if (movePoke.form == "Normal" && movePoke.pokemon_id == id) {
             fast = movePoke.fast_moves;
-            charged = typePoke.charged_moves;
+            charged = movePoke.charged_moves;
             fast.forEach(move => {
                 new Attack(move)
             });
@@ -65,10 +65,11 @@ importPokemon();
 
 console.log(Pokemon.allPokemons)
 
+/*
 function getPokemonByType(typeName) {
     let tab = [];
-    allPokemons.forEach(poke => {
-        poke.getTypes().forEach(type =>{
+    Pokemon.allPokemons.forEach(poke => {
+        poke.id.getTypes().forEach(type =>{
             if (type = typeName ){
                 tab.push(poke);
             }
@@ -79,12 +80,33 @@ function getPokemonByType(typeName) {
 
 function getPokemonByAttack(attackName) {
     let tab = [];
-    allPokemons.forEach(poke => {
-        poke.getAttacks().forEach(attack =>{
-            if (attack = attackName ){
+    Pokemon.allPokemons.forEach(poke => {
+        poke.id.getAttacks().forEach(attack =>{
+            if (attack.name = attackName ){
                 tab.push(poke);
             }
         })
     })
     return tab;
 }
+console.log(getPokemonByAttack("Wrap"))
+
+function sortPokemonByName(){
+    Pokemon.allPokemons.sort((a, b) => {
+        const nameA = a._pokemon_name.toUpperCase(); // ignore upper and lowercase
+        const nameB = b._pokemon_name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+}
+
+function sortPokemonByStamina(){
+    Pokemon.allPokemons.sort((a,b) => a.value - b.value);
+}
+
+*/
