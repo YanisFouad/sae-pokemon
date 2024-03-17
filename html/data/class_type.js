@@ -1,5 +1,5 @@
-import pokemon_type from "../../JSON/pokemon_type.js";
-import type_effectiveness from "../../JSON/type_effectiveness.js";
+import pokemon_type from "../JSON/pokemon_type.js";
+import type_effectiveness from "../JSON/type_effectiveness.js";
 
 export class Type {
 

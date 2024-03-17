@@ -1,8 +1,8 @@
-import pokemon from "../../JSON/pokemon.js"
-import { Type } from "./Type.js";
-import { Attack } from "./Attack.js";
-import pokemon_types from "../../JSON/pokemon_type.js";
-import pokemon_moves from "../../JSON/pokemon_moves.js";
+import pokemon from "./pokemon.js"
+import { Type } from "./class_type.js";
+import { Attack } from "./class_attack.js";
+import pokemon_types from "./JSON/pokemon_type.js";
+import pokemon_moves from "./pokemon_moves.js";
 
 
 export class Pokemon{
