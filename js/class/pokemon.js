@@ -19,6 +19,7 @@ export class Pokemon{
         this.chargedMove =charged
     }
     getTypes(){return this._type;}
+    getAttacks(){return [].concat(this.chargedMove, this.fastMove)}
 
 }
 
@@ -69,6 +70,18 @@ function getPokemonByType(typeName) {
     allPokemons.forEach(poke => {
         poke.getTypes().forEach(type =>{
             if (type = typeName ){
+                tab.push(poke);
+            }
+        })
+    })
+    return tab;
+}
+
+function getPokemonByAttack(attackName) {
+    let tab = [];
+    allPokemons.forEach(poke => {
+        poke.getAttacks().forEach(attack =>{
+            if (attack = attackName ){
                 tab.push(poke);
             }
         })
