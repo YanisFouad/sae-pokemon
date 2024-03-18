@@ -29,7 +29,7 @@ function importPokemon() {
     Pokemon.allPokemons = new Object ();
     pokemon.forEach(poke => {
         if (poke.form == "Normal") {
-            let p = new Pokemon(poke.pokemon_id,poke.pokemon_name,poke.form,poke.base_attack,poke.defense,poke.base_stamina,
+            let p = new Pokemon(poke.pokemon_id,poke.pokemon_name,poke.form,poke.base_attack,poke.base_defense,poke.base_stamina,
                                 getPokemonType(poke.pokemon_id),getPokemonFastAttack(poke.pokemon_id),getPokemonChargedAttack(poke.pokemon_id));
             Pokemon.allPokemons[p._pokemon_id] = p;
         }
