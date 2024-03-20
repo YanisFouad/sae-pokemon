@@ -1,7 +1,7 @@
 import {getPokemonsByType, getPokemonsByAttack, sortPokemonsByName, sortPokemonsByStamina, getAttacksByType} from "../data/class_pokemon.js";
 
-let formGetType = document.getElementById('form-get-type');
-formGetType.addEventListener("submit", (e) => {
+let submitGetType = document.getElementById('submit-get-type');
+submitGetType.addEventListener("click", (e) => {
     e.preventDefault()
 
     let typeName = document.getElementById("get-type").value.toLowerCase()
@@ -12,23 +12,11 @@ formGetType.addEventListener("submit", (e) => {
     }
 })
 
-let formGetAttack = document.getElementById('form-get-attack');
-formGetAttack.addEventListener("submit", (e) => {
+let submitGetAttackByType = document.getElementById('submit-get-attack-type');
+submitGetAttackByType.addEventListener("click", (e) => {
     e.preventDefault()
 
-    let attackName = document.getElementById("get-attack").value
-
-    if(attackName){
-        attackName = attackName.charAt(0).toUpperCase() + attackName.slice(1)
-        console.table(getPokemonsByAttack(attackName))
-    }
-})
-
-let formGetAttackByType = document.getElementById('form-get-attack-type');
-formGetAttackByType.addEventListener("submit", (e) => {
-    e.preventDefault()
-
-    let attackType = document.getElementById("get-attack-type").value.toLowerCase()
+    let attackType = document.getElementById("get-type").value.toLowerCase()
 
     if(attackType){
         attackType = attackType.charAt(0).toUpperCase() + attackType.slice(1)
@@ -36,14 +24,49 @@ formGetAttackByType.addEventListener("submit", (e) => {
     }
 })
 
-let formSortName = document.getElementById('form-sort-name');
-formSortName.addEventListener("submit", (e) => {
+let submitGetAttack = document.getElementById('submit-get-attack');
+submitGetAttack.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    let attackName = document.getElementById("get-attack").value.toLowerCase()
+
+    if(attackName){
+        attackName = attackName.charAt(0).toUpperCase() + attackName.slice(1)
+        console.table(getPokemonsByAttack(attackName))
+    }
+})
+let submitGetWeakest = document.getElementById('submit-get-weakest');
+submitGetWeakest.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    let attackName = document.getElementById("get-attack").value.toLowerCase()
+
+    if(attackName){
+        attackName = attackName.charAt(0).toUpperCase() + attackName.slice(1)
+        console.table(getWeakestEnemies(attackName))
+    }
+})
+
+let submitAttackName = document.getElementById('submit-attack-name');
+submitAttackName.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    let name = document.getElementById("get-name").value.toLowerCase()
+
+    if(name){
+        name = name.charAt(0).toUpperCase() + name.slice(1)
+        console.table(getBestAttackTypesForEnemy(name))
+    }
+})
+
+let submitSortName = document.getElementById('submit-sort-name');
+submitSortName.addEventListener("click", (e) => {
     e.preventDefault()
     console.table(sortPokemonsByName())
 })
 
-let formSortStamina = document.getElementById('form-sort-stamina');
-formSortStamina.addEventListener("submit", (e) => {
+let submitSortStamina = document.getElementById('submit-sort-stamina');
+submitSortStamina.addEventListener("click", (e) => {
     e.preventDefault()
     console.table(sortPokemonsByStamina())
 })
