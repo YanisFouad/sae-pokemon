@@ -154,18 +154,15 @@ export function getWeakestEnemies(attack){
         effectiveness = effectiveness.toFixed(2);
         pokemonEffectiveness.push({effectiveness: effectiveness, pokemon: poke});
     }
+    const maxValueEffectiveness = Math.max(...pokemonEffectiveness.map(o => o.effectiveness), 0);
 
-    return pokemonEffectiveness.sort((lastPokemon, currentPokemon) => {
-        if (lastPokemon.effectiveness > currentPokemon.effectiveness) {
-            return -1;
+    pokemonEffectiveness = pokemonEffectiveness.filter((currentPokemon) => {
+        if(currentPokemon.effectiveness == maxValueEffectiveness) {
+            return currentPokemon;
         }
-        
-        if (lastPokemon.effectiveness < currentPokemon.effectiveness) {
-            return 1;
-        }
+    });
 
-        return 0;
-    })
+    return pokemonEffectiveness;
 }
 
 export function getBestAttackTypesForEnemy(name){
@@ -185,5 +182,11 @@ export function getBestAttackTypesForEnemy(name){
         }
     }
 
-    return pokemonEffectiveness
+    const maxValueEffectiveness = Object.values(pokemonEffectiveness).reduce((lastValue, currentValue) => {
+        return currentValue > lastValue ? currentValue : lastValue;
+    })
+
+    return Object.fromEntries(Object.entries(pokemonEffectiveness).filter(([type, typeEffectiveness]) => {
+        return  typeEffectiveness == maxValueEffectiveness
+    }));
 }
