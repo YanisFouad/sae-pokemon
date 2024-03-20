@@ -47,8 +47,8 @@ submitGetWeakest.addEventListener("click", (e) => {
     }
 })
 
-let submitAttackName = document.getElementById('submit-attack-name');
-submitAttackName.addEventListener("click", (e) => {
+let submitBestAttackType = document.getElementById('submit-best-attack');
+submitBestAttackType.addEventListener("click", (e) => {
     e.preventDefault()
 
     let name = document.getElementById("get-name").value.toLowerCase()
