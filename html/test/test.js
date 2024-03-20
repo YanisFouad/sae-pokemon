@@ -1,4 +1,4 @@
-import {getPokemonsByType, getPokemonsByAttack, sortPokemonsByName, sortPokemonsByStamina, getAttacksByType} from "../data/class_pokemon.js";
+import {getPokemonsByType, getPokemonsByAttack, sortPokemonsByName, sortPokemonsByStamina, getAttacksByType, getWeakestEnemies, getBestAttackTypesForEnemy} from "../data/class_pokemon.js";
 
 let submitGetType = document.getElementById('submit-get-type');
 submitGetType.addEventListener("click", (e) => {
