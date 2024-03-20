@@ -14,7 +14,7 @@
         width: fit-content;
     }
 
-    form {
+    div {
         margin-bottom: 20px;
     }
 
@@ -25,29 +25,31 @@
 
 <body>
     <section>
-        <form id="form-get-type">
-            <label for="get-type">getPokemonsByType(typeName)</label>
-            <input type="text" name="get-type" id="get-type">
-            <button type="submit" id="submit-get-type">Log</button>
-        </form>
-        <form id="form-get-attack">
-            <label for="get-attack">getPokemonsByAttack(attackName)</label>
-            <input type="text" name="get-attack" id="get-attack">
-            <button type="submit" id="submit-get-attack">Log</button>
-        </form>
-        <form id="form-get-attack-type">
-            <label for="get-attack-type">getAttacksByType(typeName)</label>
-            <input type="text" name="get-attack" id="get-attack-type">
-            <button type="submit" name="submit-get-attack-type" id="submit-get-attack-type">Log</button>
-        </form>
-        <form id="form-sort-name">
-            <label for="submit-sort-name">sortPokemonByName()</label>
-            <button type="submit" name="submit-sort-name" id="submit-sort-name">Log</button>
-        </form>
-        <form id="form-sort-stamina">
-            <label for="submit-sort-stamina">sortPokemonByStamina()</label>
-            <button type="submit" name="submit-sort-stamina" id="submit-sort-stamina">Log</button>
-        </form>
+        <div>
+            <label for="get-type">Entrez un type</label>
+            <input type="text" name="get-type" id="get-type"><br>
+            <a href="" id="submit-get-type">getPokemonsByType(typeName)</a> <br>
+            <a href="" id="submit-get-attack-type">getAttacksByType(typeName)</a>
+        </div>
+        <div>
+            <label for="get-attack">Entrez une attaque</label>
+            <input type="text" name="get-attack" id="get-attack"><br>
+            <a href="" id="submit-get-attack">getPokemonsByAttack(attackName)</a> <br>
+            <a href="" id="submit-get-weakest">getWeakestEnemies(attackName)</a>
+        </div>
+        <div>
+            <label for="get-nom">Entrez un nom</label>
+            <input type="text" name="get-nom" id="get-nom"><br>
+            <a href="" id="submit-attack-name">getPokemonsByAttack(attackName)</a> <br>
+        </div>
+        <div >
+            <label for="submit-sort-name">Trier les pokémons par nom</label><br>
+            <a href="" id="submit-sort-name">sortPokemonByName()</a>
+        </div>
+        <div>
+            <label for="submit-sort-stamina">Trier les pokémons par endurance</label><br>
+            <a href="" id="submit-sort-stamina">sortPokemonByStamina()</a>
+        </div>
     </section>
 </body>
 </html>
