@@ -135,3 +135,58 @@ export function sortPokemonsByStamina(){
         return 0;
     })
 }
+
+
+export function getWeakestEnemies(attack){
+    let pokemonEffectiveness = [];
+
+    let attackType = Object.values(Attack.allAttacks).filter((currentAttack) => {
+        if(currentAttack.name == attack){
+            return attack;
+        }
+    })[0].type;
+
+    for (const [key,poke] of Object.entries(Pokemon.allPokemons)){
+        let effectiveness = 1;
+        for (let type in poke._type){
+            effectiveness *= Type.allTypes[type].effectiveness[attackType];
+        }
+        effectiveness = effectiveness.toFixed(2);
+        pokemonEffectiveness.push({effectiveness: effectiveness, pokemon: poke});
+    }
+    const maxValueEffectiveness = Math.max(...pokemonEffectiveness.map(o => o.effectiveness), 0);
+
+    pokemonEffectiveness = pokemonEffectiveness.filter((currentPokemon) => {
+        if(currentPokemon.effectiveness == maxValueEffectiveness) {
+            return currentPokemon;
+        }
+    });
+
+    return pokemonEffectiveness;
+}
+
+export function getBestAttackTypesForEnemy(name){
+    let pokemonEffectiveness = new Object();
+
+    let pokemonAttack = Object.values(Pokemon.allPokemons).filter((currentPokemon) => {
+        if(currentPokemon._pokemon_name == name){
+            return currentPokemon;
+        }
+    })[0].getAttacks();
+
+    for (const [key,attack] of Object.entries(pokemonAttack)){
+        let effectiveness = Type.allTypes[attack._attack.type].effectiveness[attack._attack.type]
+        
+        if(!pokemonEffectiveness[attack._attack.type]) {
+            pokemonEffectiveness[attack._attack.type] = effectiveness;
+        }
+    }
+
+    const maxValueEffectiveness = Object.values(pokemonEffectiveness).reduce((lastValue, currentValue) => {
+        return currentValue > lastValue ? currentValue : lastValue;
+    })
+
+    return Object.fromEntries(Object.entries(pokemonEffectiveness).filter(([type, typeEffectiveness]) => {
+        return  typeEffectiveness == maxValueEffectiveness
+    }));
+}
