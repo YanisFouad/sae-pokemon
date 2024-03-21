@@ -4486,3 +4486,5 @@ let generation = {
 }
 ]
 }
+
+export default generation;
