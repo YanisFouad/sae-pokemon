@@ -20,10 +20,10 @@ export class Type {
     }
 
     toString() {
-        let msg = "Type : " + this._type.title + "\nEffectiveness : \n";
+        let msg = "\nType : " + this._type.title + "\n  Effectiveness : \n";
 
         for(let [key, efficiency] of Object.entries(this._type.effectiveness)) {
-            msg += "\t- " + key + " : " + efficiency + "\n";
+            msg += "\t-  " + key + " : " + efficiency + "\n";
         }
 
         return msg;
