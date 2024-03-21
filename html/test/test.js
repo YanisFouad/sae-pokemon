@@ -70,9 +70,3 @@ submitSortStamina.addEventListener("click", (e) => {
     e.preventDefault()
     console.table(sortPokemonsByStamina())
 })
-
-let pokemon = Pokemon.allPokemons[4].toString();
-
-console.log(pokemon)
-
-console.log(getAttacksByType("Fire"))
