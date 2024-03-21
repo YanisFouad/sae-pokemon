@@ -1,4 +1,4 @@
-import {getPokemonsByType, getPokemonsByAttack, sortPokemonsByName, sortPokemonsByStamina, getAttacksByType, getWeakestEnemies, getBestAttackTypesForEnemy} from "../data/class_pokemon.js";
+import {getPokemonsByType, getPokemonsByAttack, sortPokemonsByName, sortPokemonsByStamina, getAttacksByType, getWeakestEnemies, getBestAttackTypesForEnemy, Pokemon} from "../data/class_pokemon.js";
 
 let submitGetType = document.getElementById('submit-get-type');
 submitGetType.addEventListener("click", (e) => {
@@ -70,5 +70,9 @@ submitSortStamina.addEventListener("click", (e) => {
     e.preventDefault()
     console.table(sortPokemonsByStamina())
 })
+
+let pokemon = Pokemon.allPokemons[4].toString();
+
+console.log(pokemon)
 
 console.log(getAttacksByType("Fire"))

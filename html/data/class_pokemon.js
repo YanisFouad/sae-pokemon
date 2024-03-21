@@ -20,6 +20,29 @@ export class Pokemon{
     }
     getTypes(){return this._type;}
     getAttacks(){return {...this._fastMove, ...this._chargedMove}}
+    toString(){ let poke = '';
+                poke += "Id : " + this._pokemon_id + "\n"
+                poke += "Name : " + this._pokemon_name + "\n"
+                poke += "Form : " + this._form + "\n"
+                poke += "Base attack : " + this._base_attack + "\n"
+                poke += "Base defense : " + this._base_defense + "\n"
+                poke += "Base stamina : " + this._base_stamina + "\n"
+                
+                poke += "Type : "
+                for (let type in this._type) {  
+                    poke += this._type[type].toString() + " "
+                }
+                poke += "\nAttack :\n    chargedMove : "
+                for (let charged in this._chargedMove){
+                    poke += this._chargedMove[charged].toString() + " "
+                }
+                poke += "\n     fastMove : "
+                for (let fast in this._fastMove){
+                    poke += this._fastMove[fast] + " "
+                }
+                
+                
+        return   poke}
 
 }
 
