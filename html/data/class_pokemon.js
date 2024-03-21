@@ -102,7 +102,8 @@ export function getPokemonsByAttack(attackName) {
 
 export function getAttacksByType(attackType) {
     return Object.values(Attack.allAttacks).filter((attack) => {
-        if (attack.type == attackType) {
+        console.log(attack);
+        if (attack._attack.type == attackType) {
             return attack;
         }
     })
@@ -141,15 +142,16 @@ export function getWeakestEnemies(attack){
     let pokemonEffectiveness = [];
 
     let attackType = Object.values(Attack.allAttacks).filter((currentAttack) => {
-        if(currentAttack.name == attack){
+        if(currentAttack._attack.name == attack){
             return attack;
         }
-    })[0].type;
+    })[0]._attack.type;
 
     for (const [key,poke] of Object.entries(Pokemon.allPokemons)){
         let effectiveness = 1;
         for (let type in poke._type){
-            effectiveness *= Type.allTypes[type].effectiveness[attackType];
+            console.log(Type.allTypes[type]);
+            effectiveness *= Type.allTypes[type]._type.effectiveness[attackType];
         }
         effectiveness = effectiveness.toFixed(2);
         pokemonEffectiveness.push({effectiveness: effectiveness, pokemon: poke});
@@ -175,7 +177,7 @@ export function getBestAttackTypesForEnemy(name){
     })[0].getAttacks();
 
     for (const [key,attack] of Object.entries(pokemonAttack)){
-        let effectiveness = Type.allTypes[attack._attack.type].effectiveness[attack._attack.type]
+        let effectiveness = Type.allTypes[attack._attack.type]._type.effectiveness[attack._attack.type]
         
         if(!pokemonEffectiveness[attack._attack.type]) {
             pokemonEffectiveness[attack._attack.type] = effectiveness;
