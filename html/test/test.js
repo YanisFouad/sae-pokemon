@@ -69,8 +69,4 @@ let submitSortStamina = document.getElementById('submit-sort-stamina');
 submitSortStamina.addEventListener("click", (e) => {
     e.preventDefault()
     console.table(sortPokemonsByStamina())
-<<<<<<< HEAD
 })
-=======
-})
->>>>>>> 15531b1a12572bd1f2a257ae5234cf7d554132dc
