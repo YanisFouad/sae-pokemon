@@ -15,15 +15,15 @@ export class Type {
 
     addType() {
         if(!Type.allTypes[this._type.title]){
-            Type.allTypes[this._type.title] = this._type
+            Type.allTypes[this._type.title] = this
         }
     }
 
     toString() {
-        let msg = "Title : " + this.type.title + "\Effectiveness : \n";
+        let msg = "\nType : " + this._type.title + "\n  Effectiveness : \n";
 
-        for(let [key, efficiency] of Object.entries(this._type.type)) {
-            msg += "\t- " + key + " : " + efficiency + "\n";
+        for(let [key, efficiency] of Object.entries(this._type.effectiveness)) {
+            msg += "\t-  " + key + " : " + efficiency + "\n";
         }
 
         return msg;
