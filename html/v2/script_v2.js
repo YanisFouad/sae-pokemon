@@ -14,6 +14,7 @@ const urlParams = new URLSearchParams(window.location.search);
 let page = urlParams.get('page');
 let precButton = document.getElementById('prec');
 let suivButton = document.getElementById('suiv');
+let numPage = document.getElementById("page");
 let precLink = precButton.children[0];
 let suivLink = suivButton.children[0];
 
@@ -33,6 +34,7 @@ if(page <= 0) {
 if(lastIndex + 1 >= pokemonNormal.length) {
     suivButton.hidden = true;
 }
+numPage.innerText = parseInt(page) +1;
 const tbody = document.getElementById("tbody");
 console.log(firstIndex, lastIndex);
 for (let i = firstIndex ; i < lastIndex ; i++) {
