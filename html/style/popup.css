@@ -1,0 +1,110 @@
+#pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* background: white; */
+    width: 611px;
+    height: 476px;
+    background-image: url(../img/pokedex.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 10;
+    transition: 200ms ease-in-out;
+}
+
+#pop-up.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+#overlay.active {
+    background-color: black;
+    z-index: 9;
+    opacity: 0.4;
+    pointer-events: all;
+}
+
+#pop-up ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+    right: 29px;
+    top: 2px;
+    float: right;
+    width: 233px;
+    height: 247px;
+    border-radius: 6px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+#pop-up ul h3 {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bolder;
+    margin: 0 0 15px 0;
+}
+
+#pop-up .pop-up-content h4 {
+    margin: 0 8px 0 0;
+}
+
+#pop-up .pop-up-content .pokemon-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0 15px 15px;
+}
+
+#pop-up .pop-up-content .popup-pokemon-image-container {
+    position: relative;
+    width: 194px;
+    height: 139px;
+    left: 54px;
+    top: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+#pop-up .pop-up-content .popup-pokemon-image-container img{
+    width: 120px;
+    height: 120px;
+}
+
+#pop-up .pop-up-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#pop-up .pop-up-header #close-popup {
+    position: absolute;
+    background-color: #B4011E;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    font-size: 1.1rem;
+}
+
+#pop-up .pop-up-header #close-popup:hover {
+    background-color: #b43449;
+
+}

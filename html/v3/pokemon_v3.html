@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/popup.css" />
+
     <style>
-        /* Style pour le tableau */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 2px solid #ddd;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+      /* Style pour le tableau */
+      body {
+        font-family: "Montserrat", sans-serif;
+      }
 
-        /* Style pour les lignes du tableau */
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #ddd;
-        }
-     
-        #pop-up {
-            display: none;
-            width: 500px;
-            height: 500px;
-            background-color: red;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+
+      /* Style pour les lignes du tableau */
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <table>
-        <thead>
-          <tr>
-            <th>identifiant unique</th>
-            <th>nom</th>
-            <th>génération</th>
-            <th>types</th>
-            <th>endurance</th>
-            <th>points d’attaque de base</th>
-            <th>points de défense de base</th>
-            <th>image</th>
-          </tr>
-        </thead>
-        <tbody id = "tbody">
-        </tbody>
-      </table>
-      <button id="prec"><a href="">PRÉC</a></button>
-      <button id="suiv"><a href="">SUIV</a></button>
-      <p id="page"></p>
-    <div id="pop-up"></div>
-
-</body>
-<script type="module" src="script_v3.js"></script>
+      <thead>
+        <tr>
+          <th>identifiant unique</th>
+          <th>nom</th>
+          <th>génération</th>
+          <th>types</th>
+          <th>endurance</th>
+          <th>points d’attaque de base</th>
+          <th>points de défense de base</th>
+          <th>image</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <button id="prec"><a href="">PRÉC</a></button>
+    <button id="suiv"><a href="">SUIV</a></button>
+    <p id="page"></p>
+    <div id="pop-up">
+        <div class="pop-up-header">
+            <button id="close-popup">Fermer</button>
+        </div>
+        <div class="pop-up-content">
+            <div class="popup-pokemon-image-container">
+                <img id="popup-pokemon-image" src="" alt="Pokemon Image">
+            </div>
+            <ul>
+                <h3 id="popup-pokemon-name"></h3>
+                <div class="pokemon-info">
+                    <h4>Identifiant :</h4>
+                    <li id="popup-pokemon-id"></li>
+                </div>
+                <div class="pokemon-info">
+                    <h4>Génération :</h4>
+                    <li id="popup-pokemon-generation"></li>
+                </div>
+                <div class="pokemon-info">
+                    <h4>Type :</h4>
+                    <li id="popup-pokemon-types"></li>
+                </div>
+                <div class="pokemon-info">
+                    <h4>Endurance :</h4>
+                    <li id="popup-pokemon-endurance"></li>
+                </div>
+                <div class="pokemon-info">
+                    <h4>Points d'attaque :</h4>
+                    <li id="popup-pokemon-attaque"></li>
+                </div>
+                <div class="pokemon-info">
+                    <h4>Points de défence :</h4>
+                    <li id="popup-pokemon-defence"></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+  </body>
+  <script type="module" src="script_v3.js"></script>
+  <div id="overlay"></div>
 </html>
