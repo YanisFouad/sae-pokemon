@@ -3,14 +3,13 @@ import generation from '../data/generation.js'
 import pokemon_types from '../data/pokemon_type.js'
 
 const urlParams = new URLSearchParams(window.location.search);
-let page = urlParams.get('page');
-let precButton = document.getElementById('prec');
-let suivButton = document.getElementById('suiv');
-let numPage = document.getElementById("page");
-let precLink = precButton.children[0];
-let suivLink = suivButton.children[0];
-const firstIndex = page * 25;
-const lastIndex = firstIndex + 25;
+let page = 0;
+let precLink = document.getElementById('prec');
+let suivLink = document.getElementById('suiv');
+let firstIndex = page * 25;
+let lastIndex = firstIndex + 25;
+const numPage = document.getElementById('page');
+
 const tbody = document.getElementById("tbody");
 
 const popup = document.getElementById("pop-up");
@@ -32,38 +31,60 @@ let pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
 });
 
 
-if (!page) {
-    page = 0;
-}
-
-
 if(page <= 0) {
-    precButton.hidden = true;
-    suivLink.href = window.location.href+"?page="+(page+1);
-} else {
-    suivLink.href = window.location.href.split("?")[0]+"?page="+(parseInt(page)+1);
-    precLink.href = window.location.href.split("?")[0]+"?page="+(page-1);
+    precLink.hidden = true;
+    numPage.innerText = parseInt(page+1);
 }
-if(lastIndex + 1 >= pokemonNormal.length) {
-    suivButton.hidden = true;
-}
-numPage.innerText = parseInt(page) +1;
+
+precLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    page--;
+    console.log(page);
+    if(page == 0) {
+        numPage.innerText = parseInt(page+1);
+        display(pokemonNormal, page);
+        precLink.hidden = true;
+    } else {
+        suivLink.hidden = false;
+        numPage.innerText = parseInt(page+1);
+        display(pokemonNormal, page);
+    }
+});
+
+suivLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    page++;
+    console.log(page);
+    firstIndex = page * 25;
+    lastIndex = firstIndex + 25;
+    console.log(firstIndex, lastIndex,pokemonNormal.length);
+    if(lastIndex + 1 >= pokemonNormal.length) {
+        suivLink.hidden = true;
+        numPage.innerText = parseInt(page+1);
+        display(pokemonNormal, page);
+    } else {
+        precLink.hidden = false;
+        numPage.innerText = parseInt(page+1);
+        display(pokemonNormal, page);
+    }
+});
 
 for (let index = 0; index < pokemonNormal.length; index++) {
-
     pokemonNormal[index].pokemon_generation = getGen(pokemonNormal[index].pokemon_id);
     pokemonNormal[index].pokemon_type = getType(pokemonNormal[index].pokemon_id);
     pokemonNormal[index].pokemon_imageptt = '../webp/thumbnails/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
     pokemonNormal[index].pokemon_imagegrd = '../webp/images/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
-
-    
 }
 
 
-function display(tabPokemon){
+function display(tabPokemon, page){
+    firstIndex = page * 25;
+    lastIndex = firstIndex + 25;
+
     while (tbody.firstChild) {
         tbody.removeChild(tbody.firstChild);
     }
+
     for (let i = firstIndex ; i < lastIndex ; i++) {
         let tr = document.createElement("tr");
 
@@ -98,7 +119,7 @@ function display(tabPokemon){
         tbody.appendChild(tr);
 }
 }
-display(pokemonNormal);
+display(pokemonNormal, firstIndex, lastIndex);
 
 closePopupButton.addEventListener("click", () => closePopup());
 overlay.addEventListener("click", () => closePopup());
@@ -163,31 +184,35 @@ selectGen.addEventListener("change", (e) => {
 })
 
 function filterGen(gen){
-    let pokemonGeneration = pokemonNormal.filter((currentPokemon) => {
+    reinitPokemon();
+    pokemonNormal = pokemonNormal.filter((currentPokemon) => {
         if(currentPokemon.pokemon_generation == gen) {
             return currentPokemon;
         }
     });
-    display(pokemonGeneration);
+    page = 0;
+    display(pokemonNormal, page);
 }
 
 let selectType = document.getElementById('type-select');
 selectType.addEventListener("change", (e) => {
     let type = e.target.value;
     if (type) {
-        display(filterType(type));
+        page = 0;
+        display(filterType(type), page);
     }
 })
 
 function filterType(type){
-    let pokemonType = pokemonNormal.filter((currentPokemon) => {
+    reinitPokemon();
+    pokemonNormal = pokemonNormal.filter((currentPokemon) => {
         for (let index = 0; index < currentPokemon.pokemon_type.length; index++) {
             if(currentPokemon.pokemon_type[index] == type) {
                 return currentPokemon;
             }
         }
     });
-    return pokemonType;
+    return pokemonNormal;
 }
 
 let filterName = document.getElementById('filter-name');
@@ -196,17 +221,21 @@ filterName.addEventListener("submit", (e) => {
     e.preventDefault();
     let name = inputFilterName.value;
     if (name) {
-        display(filterByName(name));
+        page = 0;
+        display(filterByName(name, page));
     }
 })
 
 function filterByName(name){
-    let pokemonName= pokemonNormal.filter((currentPokemon) => {
+    reinitPokemon();
+    pokemonNormal = pokemonNormal.filter((currentPokemon) => {
         if(currentPokemon.pokemon_name.toUpperCase().includes(name.toUpperCase())) {
+            console.log('test');
             return currentPokemon;
         }
     });
-    return pokemonName;
+
+    return pokemonNormal;
 }
 
 function sortID(sens) {
@@ -291,4 +320,12 @@ function sortGen(sens) {
             return 0;
         })
     }
+}
+
+function reinitPokemon() {
+    pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
+        if(currentPokemon.form == "Normal") {
+            return currentPokemon;
+        }
+    });
 }
