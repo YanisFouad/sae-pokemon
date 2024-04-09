@@ -53,7 +53,8 @@ for (let index = 0; index < pokemonNormal.length; index++) {
 
     pokemonNormal[index].pokemon_generation = getGen(pokemonNormal[index].pokemon_id);
     pokemonNormal[index].pokemon_type = getType(pokemonNormal[index].pokemon_id);
-    pokemonNormal[index].pokemon_image = '../webp/thumbnails/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
+    pokemonNormal[index].pokemon_imageptt = '../webp/thumbnails/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
+    pokemonNormal[index].pokemon_imagegrd = '../webp/images/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
 
     
 }
@@ -88,7 +89,7 @@ function display(tabPokemon){
         tdId.innerText = addZero(tabPokemon[i].pokemon_id.toString());
     
         let tdImg = document.createElement("td");
-        tdImg.innerHTML = `<img src=${tabPokemon[i].pokemon_image}>`;
+        tdImg.innerHTML = `<img src=${tabPokemon[i].pokemon_imageptt}>`;
     
         tr.append(tdId, tdName, tdGen, tdType, tdSta, tdBa, tdBd,tdImg);
         tr.addEventListener("click", (e) => pokemonPopup(tabPokemon[i], e));
@@ -135,7 +136,7 @@ function addZero(id) {
 }
 
 function pokemonPopup(currentPokemon, e) {
-    popupPokemonImage.src = currentPokemon.pokemon_image;
+    popupPokemonImage.src = currentPokemon.pokemon_imagegrd;
     popupPokemonName.innerText = currentPokemon.pokemon_name;
     popupPokemonId.innerText = "#"+addZero(currentPokemon.pokemon_id.toString());
     popupPokemonGeneration.innerText = currentPokemon.pokemon_generation;
@@ -206,4 +207,88 @@ function filterByName(name){
         }
     });
     return pokemonName;
+}
+
+function sortID(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon._pokemon_id > currentPokemon._pokemon_id) {
+                return -1;
+            }
+        
+            if (lastPokemon._pokemon_name < currentPokemon._pokemon_name) {
+                return 1;
+            }
+        
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.pokemon_id < currentPokemon.pokemon_id) {
+                return -1;
+            }
+        
+            if (lastPokemon.pokemon_id > currentPokemon.pokemon_id) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+}
+
+function sortName(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.pokemon_name > currentPokemon.pokemon_name) {
+                return -1;
+            }
+        
+            if (lastPokemon.pokemon_name < currentPokemon.pokemon_name) {
+                return 1;
+            }
+        
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.pokemon_name < currentPokemon.pokemon_name) {
+                return -1;
+            }
+        
+            if (lastPokemon.pokemon_name > currentPokemon.pokemon_name) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+}
+
+function sortGen(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.pokemon_generation > currentPokemon.pokemon_generation) {
+                return -1;
+            }
+        
+            if (lastPokemon.pokemon_generation < currentPokemon.pokemon_generation) {
+                return 1;
+            }
+        
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.pokemon_generation < currentPokemon.pokemon_generation) {
+                return -1;
+            }
+        
+            if (lastPokemon.pokemon_generation > currentPokemon.pokemon_generation) {
+                return 1;
+            }
+            return 0;
+        })
+    }
 }
