@@ -53,7 +53,7 @@ for (let index = 0; index < pokemonNormal.length; index++) {
 
     pokemonNormal[index].pokemon_generation = getGen(pokemonNormal[index].pokemon_id);
     pokemonNormal[index].pokemon_type = getType(pokemonNormal[index].pokemon_id);
-    pokemonNormal[index].pokemon_image = '../webp/images/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
+    pokemonNormal[index].pokemon_image = '../webp/thumbnails/' + addZero(pokemonNormal[index].pokemon_id.toString()) + '.webp'
 
     
 }
@@ -85,10 +85,10 @@ function display(tabPokemon){
         tdName.innerText = tabPokemon[i].pokemon_name;
     
         let tdId = document.createElement("td");
-        tdId.innerText = tabPokemon[i].pokemon_id;
+        tdId.innerText = addZero(tabPokemon[i].pokemon_id.toString());
     
         let tdImg = document.createElement("td");
-        tdImg.innerHTML = `<img src=${tabPokemon[i].pokemon_image} width = 15%>`;
+        tdImg.innerHTML = `<img src=${tabPokemon[i].pokemon_image}>`;
     
         tr.append(tdId, tdName, tdGen, tdType, tdSta, tdBa, tdBd,tdImg);
         tr.addEventListener("click", (e) => pokemonPopup(tabPokemon[i], e));
@@ -137,7 +137,7 @@ function addZero(id) {
 function pokemonPopup(currentPokemon, e) {
     popupPokemonImage.src = currentPokemon.pokemon_image;
     popupPokemonName.innerText = currentPokemon.pokemon_name;
-    popupPokemonId.innerText = currentPokemon.pokemon_id;
+    popupPokemonId.innerText = "#"+addZero(currentPokemon.pokemon_id.toString());
     popupPokemonGeneration.innerText = currentPokemon.pokemon_generation;
     popupPokemonEndurance.innerText = currentPokemon.base_stamina;
     popupPokemonDefence.innerText = currentPokemon.base_defense;
