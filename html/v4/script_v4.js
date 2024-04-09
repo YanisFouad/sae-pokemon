@@ -31,7 +31,9 @@ let pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
     }
 });
 
-
+/*
+* Pagination
+*/
 if (!page) {
     page = 0;
 }
@@ -49,6 +51,11 @@ if(lastIndex + 1 >= pokemonNormal.length) {
 }
 numPage.innerText = parseInt(page) +1;
 
+
+/*
+* Affichage du tableau
+*/
+
 for (let index = 0; index < pokemonNormal.length; index++) {
 
     pokemonNormal[index].pokemon_generation = getGen(pokemonNormal[index].pokemon_id);
@@ -58,7 +65,6 @@ for (let index = 0; index < pokemonNormal.length; index++) {
 
     
 }
-
 
 function display(tabPokemon){
     while (tbody.firstChild) {
@@ -100,9 +106,7 @@ function display(tabPokemon){
 }
 display(pokemonNormal);
 
-closePopupButton.addEventListener("click", () => closePopup());
-overlay.addEventListener("click", () => closePopup());
-
+// fait correspondre la génération à chaque pokémon
 function getGen(id) {
     for(const[key,gen] of Object.entries(generation)){
         for(const[key2,poke] of Object.entries(gen)){
@@ -113,6 +117,7 @@ function getGen(id) {
     }
 }
 
+// fait correspondre les types à chaque pokémon
 function getType(id) {
     
     for(const[key2,poke] of Object.entries(pokemon_types)){
@@ -123,6 +128,7 @@ function getType(id) {
     
 }
 
+// Ajout des zéros devant l'id
 function addZero(id) {
     let idZeros;
     if (id.length == 1) {
@@ -134,6 +140,13 @@ function addZero(id) {
     }
     return idZeros;
 }
+
+/*
+* Popup
+*/
+
+closePopupButton.addEventListener("click", () => closePopup());
+overlay.addEventListener("click", () => closePopup());
 
 function pokemonPopup(currentPokemon, e) {
     popupPokemonImage.src = currentPokemon.pokemon_imagegrd;
@@ -154,6 +167,11 @@ function closePopup() {
     popup.classList.remove("active")
 }
 
+/*
+*  Filtre
+*/
+
+// Filtre par génération
 let selectGen = document.getElementById('gen-select');
 selectGen.addEventListener("change", (e) => {
     let gen = e.target.value;
@@ -171,6 +189,7 @@ function filterGen(gen){
     display(pokemonGeneration);
 }
 
+// Filtre par Type
 let selectType = document.getElementById('type-select');
 selectType.addEventListener("change", (e) => {
     let type = e.target.value;
@@ -190,6 +209,7 @@ function filterType(type){
     return pokemonType;
 }
 
+// Filtre par Nom
 let filterName = document.getElementById('filter-name');
 let inputFilterName = document.getElementById('input-filter-name');
 filterName.addEventListener("submit", (e) => {
@@ -209,14 +229,34 @@ function filterByName(name){
     return pokemonName;
 }
 
-function sortID(sens) {
+/*
+*  Tri sur les colonnes
+*/
+
+// Tri par Id
+
+let sensSortId ="asc";
+let sortId = document.getElementById('idTh');
+sortId.addEventListener("click", (e) => {
+    console.log(e);
+    if (sensSortId == "asc") {
+        sensSortId = "desc";
+        display(sortingID("desc"));
+    }
+    else if (sensSortId == "desc") {
+        sensSortId = "asc";
+        display(sortingID("asc"));
+    }
+})
+
+function sortingID(sens) {
     if (sens == "desc") {
         return pokemonNormal.sort((lastPokemon, currentPokemon) => {
-            if (lastPokemon._pokemon_id > currentPokemon._pokemon_id) {
+            if (lastPokemon.pokemon_id > currentPokemon.pokemon_id) {
                 return -1;
             }
         
-            if (lastPokemon._pokemon_name < currentPokemon._pokemon_name) {
+            if (lastPokemon.pokemon_name < currentPokemon.pokemon_name) {
                 return 1;
             }
         
@@ -237,7 +277,20 @@ function sortID(sens) {
     }
 }
 
-function sortName(sens) {
+// Tri par Nom
+let sensSortName = "desc";
+let sortName = document.getElementById('nameTh');
+sortName.addEventListener("click", (e) => {
+    if (sensSortName == "asc") {
+        sensSortName = "desc";
+        display(sortingName("desc"));
+    }
+    else if (sensSortName == "desc") {
+        sensSortName = "asc";
+        display(sortingName("asc"));
+    }
+})
+function sortingName(sens) {
     if (sens == "desc") {
         return pokemonNormal.sort((lastPokemon, currentPokemon) => {
             if (lastPokemon.pokemon_name > currentPokemon.pokemon_name) {
@@ -265,7 +318,20 @@ function sortName(sens) {
     }
 }
 
-function sortGen(sens) {
+// Tri par Gen
+let sensSortGen = "asc";
+let sortGen = document.getElementById('genTh');
+sortGen.addEventListener("click", (e) => {
+    if (sensSortGen == "asc") {
+        sensSortGen = "desc";
+        display(sortingGen("desc"));
+    }
+    else if (sensSortGen == "desc") {
+        sensSortGen = "asc";
+        display(sortingGen("asc"));
+    }
+})
+function sortingGen(sens) {
     if (sens == "desc") {
         return pokemonNormal.sort((lastPokemon, currentPokemon) => {
             if (lastPokemon.pokemon_generation > currentPokemon.pokemon_generation) {
@@ -275,7 +341,6 @@ function sortGen(sens) {
             if (lastPokemon.pokemon_generation < currentPokemon.pokemon_generation) {
                 return 1;
             }
-        
             return 0;
         })
     }
@@ -286,6 +351,129 @@ function sortGen(sens) {
             }
         
             if (lastPokemon.pokemon_generation > currentPokemon.pokemon_generation) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+}
+
+// Tri par endurance
+let sensSortStam = "desc";
+let sortStam = document.getElementById('staminaTh');
+sortStam.addEventListener("click", (e) => {
+    if (sensSortStam == "asc") {
+        sensSortStam = "desc";
+        display(sortingStam("desc"));
+    }
+    else if (sensSortStam == "desc") {
+        sensSortStam = "asc";
+        display(sortingStam("asc"));
+    }
+})
+
+function sortingStam(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_stamina > currentPokemon.base_stamina) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_stamina < currentPokemon.base_stamina) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_stamina < currentPokemon.base_stamina) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_stamina > currentPokemon.base_stamina) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+}
+
+// Tri par point d'attaque de base
+let sensSortAttack = "desc";
+let sortAttack = document.getElementById('attackTh');
+sortAttack.addEventListener("click", (e) => {
+    if (sensSortAttack == "asc") {
+        sensSortAttack = "desc";
+        display(sortingAttack("desc"));
+    }
+    else if (sensSortAttack == "desc") {
+        sensSortAttack = "asc";
+        display(sortingAttack("asc"));
+    }
+})
+
+function sortingAttack(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_attack > currentPokemon.base_attack) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_attack < currentPokemon.base_attack) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_attack < currentPokemon.base_attack) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_attack > currentPokemon.base_attack) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+}
+
+// Tri par points de défense de base
+let sensSortDefesne = "desc";
+let sortDefense = document.getElementById('defenseTh');
+sortDefense.addEventListener("click", (e) => {
+    if (sensSortDefesne == "asc") {
+        sensSortDefesne = "desc";
+        display(sortingDefense("desc"));
+    }
+    else if (sensSortDefesne == "desc") {
+        sensSortDefesne = "asc";
+        display(sortingDefense("asc"));
+    }
+})
+
+function sortingDefense(sens) {
+    if (sens == "desc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_defense > currentPokemon.base_defense) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_defense < currentPokemon.base_defense) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+    if (sens == "asc") {
+        return pokemonNormal.sort((lastPokemon, currentPokemon) => {
+            if (lastPokemon.base_defense < currentPokemon.base_defense) {
+                return -1;
+            }
+        
+            if (lastPokemon.base_defense > currentPokemon.base_defense) {
                 return 1;
             }
             return 0;
