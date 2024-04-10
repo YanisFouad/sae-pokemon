@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../style/popup.css" />
 
     <style>
@@ -56,47 +59,79 @@
       </thead>
       <tbody id="tbody"></tbody>
     </table>
-    <button id="prec"><a href="">PRÉC</a></button>
-    <button id="suiv"><a href="">SUIV</a></button>
+    <a href="" id="prec">PRÉC</a>
+    <a href="" id="suiv">SUIV</a>
     <p id="page"></p>
     <div id="pop-up">
+      <div class="pop-up-pokemon-detail">
         <div class="pop-up-header">
-            <button id="close-popup">Fermer</button>
+          <button id="close-popup">Fermer</button>
         </div>
         <div class="pop-up-content">
-            <div class="popup-pokemon-image-container">
-                <img id="popup-pokemon-image" src="" alt="Pokemon Image">
+          <div class="popup-pokemon-image-container">
+            <img id="popup-pokemon-image" src="" alt="Pokemon Image" />
+          </div>
+          <ul>
+            <h3 id="popup-pokemon-name"></h3>
+            <div class="pokemon-info">
+              <h4>Identifiant :</h4>
+              <li id="popup-pokemon-id"></li>
             </div>
-            <ul>
-                <h3 id="popup-pokemon-name"></h3>
-                <div class="pokemon-info">
-                    <h4>Identifiant :</h4>
-                    <li id="popup-pokemon-id"></li>
-                </div>
-                <div class="pokemon-info">
-                    <h4>Génération :</h4>
-                    <li id="popup-pokemon-generation"></li>
-                </div>
-                <div class="pokemon-info">
-                    <h4>Type :</h4>
-                    <li id="popup-pokemon-types"></li>
-                </div>
-                <div class="pokemon-info">
-                    <h4>Endurance :</h4>
-                    <li id="popup-pokemon-endurance"></li>
-                </div>
-                <div class="pokemon-info">
-                    <h4>Points d'attaque :</h4>
-                    <li id="popup-pokemon-attaque"></li>
-                </div>
-                <div class="pokemon-info">
-                    <h4>Points de défence :</h4>
-                    <li id="popup-pokemon-defence"></li>
-                </div>
-            </ul>
+            <div class="pokemon-info">
+              <h4>Génération :</h4>
+              <li id="popup-pokemon-generation"></li>
+            </div>
+            <div class="pokemon-info">
+              <h4>Type :</h4>
+              <li id="popup-pokemon-types"></li>
+            </div>
+            <div class="pokemon-info">
+              <h4>Endurance :</h4>
+              <li id="popup-pokemon-endurance"></li>
+            </div>
+            <div class="pokemon-info">
+              <h4>Points d'attaque :</h4>
+              <li id="popup-pokemon-attaque"></li>
+            </div>
+            <div class="pokemon-info">
+              <h4>Points de défence :</h4>
+              <li id="popup-pokemon-defence"></li>
+            </div>
+          </ul>
         </div>
+        <div class="pop-up-attack-content">
+          <table id="table-fast-attack">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Power</td>
+                <td>Type</td>
+                <td>Stamina Loss</td>
+                <td>Duration</td>
+                <td>Energy Delta</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <table id="table-charged-attack">
+            <thead>
+              <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Power</td>
+                <td>Type</td>
+                <td>Stamina Loss</td>
+                <td>Duration</td>
+                <td>Energy Delta</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <div id="overlay"></div>
   </body>
   <script type="module" src="script_v3.js"></script>
-  <div id="overlay"></div>
 </html>
