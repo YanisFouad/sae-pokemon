@@ -30,6 +30,7 @@ const popupPokemonAttaque = document.getElementById("popup-pokemon-attaque");
 const popupPokemonDefence = document.getElementById("popup-pokemon-defence");
 const popupPokemonImage = document.getElementById("popup-pokemon-image");
 
+
 // Initialisation des pokemons
 let pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
   if (currentPokemon.form == "Normal") {
