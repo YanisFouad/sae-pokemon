@@ -8,8 +8,6 @@ let pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
     }
 });
 
-console.log(pokemonNormal);
-
 const urlParams = new URLSearchParams(window.location.search);
 let page = urlParams.get('page');
 let precButton = document.getElementById('prec');
@@ -36,9 +34,8 @@ if(lastIndex + 1 >= pokemonNormal.length) {
 }
 numPage.innerText = parseInt(page) +1;
 const tbody = document.getElementById("tbody");
-console.log(firstIndex, lastIndex);
+
 for (let i = firstIndex ; i < lastIndex ; i++) {
-    // console.log(i);
         let tr = document.createElement("tr");
 
         let tdSta = document.createElement("td");
@@ -100,7 +97,5 @@ function addZero(id) {
     }
     return idZeros;
 }
-
-console.log(addZero("5"));
 
 getGen(5);

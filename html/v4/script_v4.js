@@ -1,8 +1,10 @@
 import pokemon from "../data/pokemon.js";
 import generation from "../data/generation.js";
 import pokemon_types from "../data/pokemon_type.js";
+import pokemon_moves from "../data/pokemon_moves.js";
+import fast_moves from "../data/fast_moves.js";
+import charged_moves from "../data/charged_moves.js";
 
-const urlParams = new URLSearchParams(window.location.search);
 let page = 0;
 let precLink = document.getElementById("prec");
 let suivLink = document.getElementById("suiv");
@@ -47,7 +49,6 @@ if (page <= 0) {
 precLink.addEventListener("click", (e) => {
   e.preventDefault();
   page--;
-  console.log(page);
   if (page == 0) {
     numPage.innerText = parseInt(page + 1);
     display();
@@ -62,10 +63,8 @@ precLink.addEventListener("click", (e) => {
 suivLink.addEventListener("click", (e) => {
   e.preventDefault();
   page++;
-  console.log(page);
   firstIndex = page * 25;
   lastIndex = firstIndex + 25;
-  console.log(firstIndex, lastIndex, pokemonNormal.length);
   if (lastIndex + 1 >= pokemonNormal.length) {
     suivLink.hidden = true;
     numPage.innerText = parseInt(page + 1);
@@ -91,6 +90,24 @@ for (let index = 0; index < pokemonNormal.length; index++) {
     "../webp/images/" +
     addZero(pokemonNormal[index].pokemon_id.toString()) +
     ".webp";
+
+    const pokeAttack = pokemon_moves.filter((attack) => {
+      if (attack.pokemon_id == pokemonNormal[index].pokemon_id) {
+        return attack;
+      }
+    })[0];
+  
+    pokemonNormal[index].fast_attack = [...fast_moves.filter((attack) => {
+      if(pokeAttack.fast_moves.find((attackName) => {return attackName == attack.name;})){
+        return attack;
+      }
+    })];
+  
+    pokemonNormal[index].charged_attack = [...charged_moves.filter((attack) => {
+      if(pokeAttack.charged_moves.find((attackName) => {return attackName == attack.name;})){
+        return attack;
+      }
+    })];
 }
 
 display();
@@ -137,6 +154,14 @@ function display() {
     tr.append(tdId, tdName, tdGen, tdType, tdSta, tdBa, tdBd, tdImg);
     tr.addEventListener("click", (e) => pokemonPopup(pokemonNormal[i], e));
     tr.pokemonId = tdId;
+
+    tdImg.addEventListener("mouseover", () => {
+      tdImg.innerHTML = `<img src=${pokemonNormal[i].pokemon_imagegrd}>`;
+    });
+
+    tdImg.addEventListener("mouseleave", () => {
+      tdImg.innerHTML = `<img src=${pokemonNormal[i].pokemon_imageptt}>`;
+    });
 
     tbody.appendChild(tr);
   }
@@ -190,6 +215,53 @@ function pokemonPopup(currentPokemon, e) {
   popupPokemonAttaque.innerText = currentPokemon.base_attack;
   popupPokemonTypes.innerText = currentPokemon.pokemon_type;
 
+  const tableFastAttack = document.getElementById('table-fast-attack')
+  const tbodyFastAttack = tableFastAttack.querySelector("tbody");
+
+  currentPokemon.fast_attack.forEach(attack => {
+    let trBody = document.createElement("tr");
+    let tdDurationBody = document.createElement("td");
+    let tdEnergyDeltaBody = document.createElement("td");
+    let tdMoveIdBody = document.createElement("td");
+    let tdNameBody = document.createElement("td");
+    let tdPowerBody = document.createElement("td");
+    let tdStaminaLossScalerBody = document.createElement("td");
+    let tdTypeBody = document.createElement("td");
+    tdDurationBody.innerText = attack.duration;
+    tdEnergyDeltaBody.innerText = attack.energy_delta;
+    tdMoveIdBody.innerText = attack.move_id;
+    tdNameBody.innerText = attack.name;
+    tdPowerBody.innerText = attack.power;
+    tdStaminaLossScalerBody.innerText = attack.stamina_loss_scaler;
+    tdTypeBody.innerText = attack.type;
+
+    trBody.append(tdMoveIdBody, tdNameBody, tdPowerBody, tdTypeBody, tdStaminaLossScalerBody, tdDurationBody, tdEnergyDeltaBody);
+    tbodyFastAttack.append(trBody);
+  });
+
+  const tableChargedAttack = document.getElementById('table-charged-attack')
+  const tbodyChargedAttack = tableChargedAttack.querySelector("tbody");
+  currentPokemon.charged_attack.forEach(attack => {
+    let trBody = document.createElement("tr");
+    let tdDurationBody = document.createElement("td");
+    let tdEnergyDeltaBody = document.createElement("td");
+    let tdMoveIdBody = document.createElement("td");
+    let tdNameBody = document.createElement("td");
+    let tdPowerBody = document.createElement("td");
+    let tdStaminaLossScalerBody = document.createElement("td");
+    let tdTypeBody = document.createElement("td");
+    tdDurationBody.innerText = attack.duration;
+    tdEnergyDeltaBody.innerText = attack.energy_delta;
+    tdMoveIdBody.innerText = attack.move_id;
+    tdNameBody.innerText = attack.name;
+    tdPowerBody.innerText = attack.power;
+    tdStaminaLossScalerBody.innerText = attack.stamina_loss_scaler;
+    tdTypeBody.innerText = attack.type;
+
+    trBody.append(tdMoveIdBody, tdNameBody, tdPowerBody, tdTypeBody, tdStaminaLossScalerBody, tdDurationBody, tdEnergyDeltaBody);
+    tbodyChargedAttack.append(trBody);
+  });
+
   overlay.classList.add("active");
   popup.classList.add("active");
 }
@@ -197,7 +269,18 @@ function pokemonPopup(currentPokemon, e) {
 function closePopup() {
   overlay.classList.remove("active");
   popup.classList.remove("active");
+
+  const tableChargedAttack = document.getElementById('table-charged-attack')
+  const tbodyChargedAttack = tableChargedAttack.querySelector("tbody");
+
+  const tableFastAttack = document.getElementById('table-fast-attack')
+  const tbodyFastAttack = tableFastAttack.querySelector("tbody");
+
+  tbodyFastAttack.innerHTML = "";
+  tbodyChargedAttack.innerHTML = "";
+
 }
+
 
 ////////////////////////////
 /* Filtrage des pokemons */

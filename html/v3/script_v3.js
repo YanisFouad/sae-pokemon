@@ -3,7 +3,7 @@ import generation from "../data/generation.js";
 import pokemon_types from "../data/pokemon_type.js";
 import pokemon_moves from "../data/pokemon_moves.js";
 import fast_moves from "../data/fast_moves.js";
-import charged_moves from "../data/fast_moves.js";
+import charged_moves from "../data/charged_moves.js";
 
 let page = 0;
 let precLink = document.getElementById("prec");
@@ -49,7 +49,6 @@ if (page <= 0) {
 precLink.addEventListener("click", (e) => {
   e.preventDefault();
   page--;
-  console.log(page);
   if (page == 0) {
     numPage.innerText = parseInt(page + 1);
     display();
@@ -64,10 +63,8 @@ precLink.addEventListener("click", (e) => {
 suivLink.addEventListener("click", (e) => {
   e.preventDefault();
   page++;
-  console.log(page);
   firstIndex = page * 25;
   lastIndex = firstIndex + 25;
-  console.log(firstIndex, lastIndex, pokemonNormal.length);
   if (lastIndex + 1 >= pokemonNormal.length) {
     suivLink.hidden = true;
     numPage.innerText = parseInt(page + 1);
@@ -158,6 +155,14 @@ function display() {
     tr.addEventListener("click", (e) => pokemonPopup(pokemonNormal[i], e));
     tr.pokemonId = tdId;
 
+    tdImg.addEventListener("mouseover", () => {
+      tdImg.innerHTML = `<img src=${pokemonNormal[i].pokemon_imagegrd}>`;
+    });
+
+    tdImg.addEventListener("mouseleave", () => {
+      tdImg.innerHTML = `<img src=${pokemonNormal[i].pokemon_imageptt}>`;
+    });
+
     tbody.appendChild(tr);
   }
 }
@@ -193,7 +198,6 @@ function addZero(id) {
   return idZeros;
 }
 
-console.log(pokemonNormal);
 ///////////////////////////////
 /* Popup détail d'un pokemon */
 ///////////////////////////////
@@ -237,7 +241,6 @@ function pokemonPopup(currentPokemon, e) {
 
   const tableChargedAttack = document.getElementById('table-charged-attack')
   const tbodyChargedAttack = tableChargedAttack.querySelector("tbody");
-
   currentPokemon.charged_attack.forEach(attack => {
     let trBody = document.createElement("tr");
     let tdDurationBody = document.createElement("td");
@@ -266,4 +269,14 @@ function pokemonPopup(currentPokemon, e) {
 function closePopup() {
   overlay.classList.remove("active");
   popup.classList.remove("active");
+
+  const tableChargedAttack = document.getElementById('table-charged-attack')
+  const tbodyChargedAttack = tableChargedAttack.querySelector("tbody");
+
+  const tableFastAttack = document.getElementById('table-fast-attack')
+  const tbodyFastAttack = tableFastAttack.querySelector("tbody");
+
+  tbodyFastAttack.innerHTML = "";
+  tbodyChargedAttack.innerHTML = "";
+
 }

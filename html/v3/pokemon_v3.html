@@ -10,37 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../style/table.css" />
     <link rel="stylesheet" href="../style/popup.css" />
-
-    <style>
-      /* Style pour le tableau */
-      body {
-        font-family: "Montserrat", sans-serif;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 2px solid #ddd;
-      }
-      th,
-      td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-      th {
-        background-color: #f2f2f2;
-      }
-
-      /* Style pour les lignes du tableau */
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-      tr:hover {
-        background-color: #ddd;
-      }
-    </style>
   </head>
 
   <body>
@@ -74,10 +45,6 @@
           <ul>
             <h3 id="popup-pokemon-name"></h3>
             <div class="pokemon-info">
-              <h4>Identifiant :</h4>
-              <li id="popup-pokemon-id"></li>
-            </div>
-            <div class="pokemon-info">
               <h4>Génération :</h4>
               <li id="popup-pokemon-generation"></li>
             </div>
@@ -98,8 +65,12 @@
               <li id="popup-pokemon-defence"></li>
             </div>
           </ul>
+          <span id="popup-pokemon-id" class="pokemon-id">#</span>
         </div>
-        <div class="pop-up-attack-content">
+      </div>
+      <div class="pop-up-attack-content">
+        <div class="table-attack-container">
+          <h2>Fast Attacks :</h2>
           <table id="table-fast-attack">
             <thead>
               <tr>
@@ -114,6 +85,7 @@
             </thead>
             <tbody></tbody>
           </table>
+          <h2>Charged Attacks :</h2>
           <table id="table-charged-attack">
             <thead>
               <tr>

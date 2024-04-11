@@ -69,6 +69,4 @@ function addZero(id) {
     return idZeros;
 }
 
-console.log(addZero("5"));
-
 getGen(5);
