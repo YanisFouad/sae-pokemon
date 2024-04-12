@@ -60,21 +60,41 @@
       </div>
     </section>
 
-    <table>
-      <thead>
-        <tr>
-          <th id = "idTh" value="asc">identifiant unique</th>
-          <th id = "nameTh">nom</th>
-          <th id = "genTh">génération</th>
-          <th id = "typeTh">types</th>
-          <th id = "staminaTh">endurance</th>
-          <th id = "attackTh">points d’attaque de base</th>
-          <th id = "defenseTh">points de défense de base</th>
-          <th>image</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
+    <div class="scroll-container">
+      <table id="pokemon-table">
+        <thead>
+          <tr>
+            <th>
+              <div id="sort-id">identifiant unique<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-name">nom<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-gen">génération<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-type">types<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-stamina">endurance<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-attack">
+                points d’attaque de base<span class="sort"></span>
+              </div>
+            </th>
+            <th>
+              <div id="sort-defence">
+                points de défense de base<span class="sort"></span>
+              </div>
+            </th>
+            <th>image</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
     <a href="" id="prec">PRÉC</a>
     <a href="" id="suiv">SUIV</a>
     <p id="page"></p>

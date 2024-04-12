@@ -14,22 +14,41 @@
 </head>
 
 <body>
-    <table>
-        <thead>
-          <tr>
-            <th>identifiant unique</th>
-            <th>nom</th>
-            <th>génération</th>
-            <th>types</th>
-            <th>endurance</th>
-            <th>points d’attaque de base</th>
-            <th>points de défense de base</th>
-            <th>image</th>
-          </tr>
-        </thead>
-        <tbody id = "tbody">
-        </tbody>
-      </table>
+  <div class="scroll-container">
+    <table id="pokemon-table">
+      <thead>
+        <tr>
+          <th>
+            <div id="sort-id">identifiant unique<span class="sort"></span></div>
+          </th>
+          <th>
+            <div id="sort-name">nom<span class="sort"></span></div>
+          </th>
+          <th>
+            <div id="sort-gen">génération<span class="sort"></span></div>
+          </th>
+          <th>
+            <div id="sort-type">types<span class="sort"></span></div>
+          </th>
+          <th>
+            <div id="sort-stamina">endurance<span class="sort"></span></div>
+          </th>
+          <th>
+            <div id="sort-attack">
+              points d’attaque de base<span class="sort"></span>
+            </div>
+          </th>
+          <th>
+            <div id="sort-defence">
+              points de défense de base<span class="sort"></span>
+            </div>
+          </th>
+          <th>image</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
 </body>
 <script type="module" src="script_v1.js"></script>
 </html>

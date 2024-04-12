@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,28 +11,49 @@
     />
     <title>Pokédex</title>
     <link rel="stylesheet" href="../style/table.css" />
-</head>
+  </head>
 
-<body>
-    <table>
+  <body>
+    <div class="scroll-container">
+      <table id="pokemon-table">
         <thead>
           <tr>
-            <th>identifiant unique</th>
-            <th>nom</th>
-            <th>génération</th>
-            <th>types</th>
-            <th>endurance</th>
-            <th>points d’attaque de base</th>
-            <th>points de défense de base</th>
+            <th>
+              <div id="sort-id">
+                identifiant unique<span class="sort"></span>
+              </div>
+            </th>
+            <th>
+              <div id="sort-name">nom<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-gen">génération<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-type">types<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-stamina">endurance<span class="sort"></span></div>
+            </th>
+            <th>
+              <div id="sort-attack">
+                points d’attaque de base<span class="sort"></span>
+              </div>
+            </th>
+            <th>
+              <div id="sort-defence">
+                points de défense de base<span class="sort"></span>
+              </div>
+            </th>
             <th>image</th>
           </tr>
         </thead>
-        <tbody id = "tbody">
-        </tbody>
+        <tbody id="tbody"></tbody>
       </table>
-      <button id="prec"><a href="">PRÉC</a></button>
-      <button id="suiv"><a href="">SUIV</a></button>
-      <p id="page"></p>
-</body>
-<script type="module" src="script_v2.js"></script>
+    </div>
+    <button id="prec"><a href="">PRÉC</a></button>
+    <button id="suiv"><a href="">SUIV</a></button>
+    <p id="page"></p>
+  </body>
+  <script type="module" src="script_v2.js"></script>
 </html>
