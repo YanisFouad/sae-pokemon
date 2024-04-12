@@ -161,6 +161,16 @@ function display() {
   firstIndex = page * 25;
   lastIndex = firstIndex + 25;
 
+  if (page == 0) {
+    for(let linkPrec of precLink) {
+      linkPrec.hidden = true;
+    }
+  } else {
+    for(let linkSuiv of suivLink) {
+      linkSuiv.hidden = false;
+    }
+  }
+
   while (tbody.firstChild) {
     tbody.removeChild(tbody.firstChild);
   }
@@ -386,6 +396,9 @@ function updatePokemonFilter() {
   pokemonNormal = filterType(pokemonNormal, selectType.value);
   pokemonNormal = filterByName(pokemonNormal, inputFilterName.value);
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -428,6 +441,9 @@ function sortId(sens) {
   }
 
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -466,6 +482,9 @@ function sortName(sens) {
   }
 
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -503,6 +522,9 @@ function sortGen(sens) {
     });
   }
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -540,6 +562,9 @@ function sortStamina(sens) {
     });
   }
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -577,6 +602,9 @@ function sortAttack(sens) {
     });
   }
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -614,6 +642,9 @@ function sortDefence(sens) {
     });
   }
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
 
@@ -664,5 +695,8 @@ function sortType(sens) {
   }
 
   page = 0;
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
   display();
 }
