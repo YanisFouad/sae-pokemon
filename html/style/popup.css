@@ -10,6 +10,7 @@
     flex-wrap: nowrap;
     gap: 20px;
     align-items: center;
+    
 }
 
 #pop-up.active {
@@ -121,6 +122,7 @@
     width: 100px;
     height: 50px;
     font-size: 1.1rem;
+    
 }
 
 #pop-up .pop-up-header #close-popup:hover {
@@ -133,6 +135,8 @@
     padding: 15px;
     height: fit-content;
     max-height: 90dvh;
+    border-style: solid ;
+    border-width: 1.5px;
 }
 
 #pop-up .pop-up-attack-content h2{
