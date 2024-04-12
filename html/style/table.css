@@ -14,7 +14,7 @@ body {
   td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #d9c8b3;
     color: #B4011E;
   }
   th {
@@ -28,7 +28,7 @@ body {
     background-color: #d9c8b3;
   }
   tr:hover {
-    background-color: #ddd;
+    background-color: #CFBCA4;
   }
 
 .sort {
