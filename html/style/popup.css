@@ -82,8 +82,8 @@
     position: relative;
     font-size: 1.4rem;
     font-weight: bolder;
-    top: 188px;
-    left: 85px;
+    top: 183px;
+    left: 84px;
 
 }
 
@@ -128,7 +128,7 @@
 }
 
 #pop-up .pop-up-attack-content{
-    border-radius: 6px;
+    border-radius: 14px;
     background-color: #B4011E;
     padding: 15px;
     height: fit-content;
