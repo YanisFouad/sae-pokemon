@@ -10,7 +10,7 @@
     flex-wrap: nowrap;
     gap: 20px;
     align-items: center;
-    
+
 }
 
 #pop-up.active {
@@ -67,6 +67,7 @@
 
 #pop-up .pop-up-content {
     height: 392px;
+    width: 568px;
 }
 
 #pop-up .pop-up-content h4 {
@@ -84,8 +85,9 @@
     position: relative;
     font-size: 1.4rem;
     font-weight: bolder;
-    top: 183px;
-    left: 84px;
+    top: 202px;
+    right: 236px;
+    color: black;
 
 }
 
@@ -175,6 +177,7 @@
         border-radius: 13px;
     }
     #pop-up .pop-up-content {
+        width: unset;
         all: initial;
         display: flex;
         flex-direction: column;
@@ -190,7 +193,22 @@
         all: initial;
         list-style: none;
         font-family: "Montserrat", sans-serif;
+        color: #B4011E;
     }
+    
+    #pop-up ul .pop-up-title-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    #pop-up ul #popup-pokemon-id{
+        margin-left: 15px;
+        position: unset;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+    }
+
     #pop-up .pop-up-pokemon-detail {
         width: unset;
     }

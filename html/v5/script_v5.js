@@ -196,7 +196,7 @@ function display() {
     tr.addEventListener("click", (e) => pokemonPopup(pokemonNormal[i], e));
     tr.pokemonId = tdId;
 
-    tdImg.addEventListener("mouseover", () => {
+    tdImg.addEventListener("mouseenter", () => {
       tdImg.innerHTML = `<img src=${pokemonNormal[i].pokemon_imagegrd}>`;
     });
 
