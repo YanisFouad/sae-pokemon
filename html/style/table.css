@@ -6,7 +6,6 @@ body {
   table {
     width: 100%;
     border-collapse: collapse;
-    border: 2px solid #ddd;
     border: 2px solid #B4011E;
 
   }
@@ -17,6 +16,7 @@ body {
     border-bottom: 1px solid #d9c8b3;
     color: #B4011E;
   }
+  
   th {
     background-color: #d9c8b3;
   }
@@ -61,6 +61,7 @@ select,input {
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  background-color: #d9c8b3;
 }
 
 /* Style pour les éléments select lorsqu'ils sont survolés */
