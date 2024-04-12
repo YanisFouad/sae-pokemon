@@ -15,51 +15,59 @@
   </head>
 
   <body>
-    <section id="filter-container">
-      <div>
-        <label for="gen-select">Choisir une génération :</label>
-        <select name="gen" id="gen-select">
-          <option value="0">Vide</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
+    <header>
+      <section id="filter-container">
+        <div>
+          <label for="gen-select">Choisir une génération :</label>
+          <select name="gen" id="gen-select">
+            <option value="0">Vide</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+        <div>
+          <label for="type-select">Choisir un type :</label>
+          <select name="type" id="type-select">
+            <option value="0">Vide</option>
+            <option value="Normal">Normal</option>
+            <option value="Fire">Fire</option>
+            <option value="Water">Water</option>
+            <option value="Electric">Electric</option>
+            <option value="Grass">Grass</option>
+            <option value="Ice">Ice</option>
+            <option value="Fighting">Fighting</option>
+            <option value="Ground">Ground</option>
+            <option value="Flying">Flying</option>
+            <option value="Poison">Poison</option>
+            <option value="Pyschic">Pyschic</option>
+            <option value="Bug">Bug</option>
+            <option value="Rock">Rock</option>
+            <option value="Ghost">Ghost</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Dark">Dark</option>
+            <option value="Steel">Steel</option>
+            <option value="Fairy">Fairy</option>
+          </select>
+        </div>
+  
+        <div>
+          <label for="filter-name">Entrez un nom</label>
+          <input type="text" id="input-filter-name" />
+        </div>
+      </section>
+      <div class="pagination-container">
+        <a href="" class="prec">PRÉC</a>
+        <p class="page"></p>
+        <a href="" class="suiv">SUIV</a>
       </div>
-      <div>
-        <label for="type-select">Choisir un type :</label>
-        <select name="type" id="type-select">
-          <option value="0">Vide</option>
-          <option value="Normal">Normal</option>
-          <option value="Fire">Fire</option>
-          <option value="Water">Water</option>
-          <option value="Electric">Electric</option>
-          <option value="Grass">Grass</option>
-          <option value="Ice">Ice</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Ground">Ground</option>
-          <option value="Flying">Flying</option>
-          <option value="Poison">Poison</option>
-          <option value="Pyschic">Pyschic</option>
-          <option value="Bug">Bug</option>
-          <option value="Rock">Rock</option>
-          <option value="Ghost">Ghost</option>
-          <option value="Dragon">Dragon</option>
-          <option value="Dark">Dark</option>
-          <option value="Steel">Steel</option>
-          <option value="Fairy">Fairy</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="filter-name">Entrez un nom</label>
-        <input type="text" id="input-filter-name" />
-      </div>
-    </section>
+    </header>
+    
 
     <table id="pokemon-table">
       <thead>
@@ -94,9 +102,11 @@
       </thead>
       <tbody id="tbody"></tbody>
     </table>
-    <a href="" id="prec">PRÉC</a>
-    <a href="" id="suiv">SUIV</a>
-    <p id="page"></p>
+    <div class="pagination-container">
+      <a href="" class="prec">PRÉC</a>
+      <p class="page"></p>
+      <a href="" class="suiv">SUIV</a>
+    </div>
     <div id="pop-up">
       <div class="pop-up-pokemon-detail">
         <div class="pop-up-header">
