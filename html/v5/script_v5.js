@@ -5,13 +5,12 @@ import pokemon_moves from "../data/pokemon_moves.js";
 import fast_moves from "../data/fast_moves.js";
 import charged_moves from "../data/charged_moves.js";
 
-const urlParams = new URLSearchParams(window.location.search);
 let page = 0;
-let precLink = document.getElementById("prec");
-let suivLink = document.getElementById("suiv");
+let precLink = document.getElementsByClassName("prec");
+let suivLink = document.getElementsByClassName("suiv");
 let firstIndex = page * 25;
 let lastIndex = firstIndex + 25;
-const numPage = document.getElementById("page");
+const numPage = document.getElementsByClassName("page");
 
 const tbody = document.getElementById("tbody");
 
@@ -59,42 +58,64 @@ let pokemonNormal = Object.values(pokemon).filter((currentPokemon) => {
 ////////////////////////////////////////////
 
 if (page <= 0) {
-  precLink.hidden = true;
-  numPage.innerText = parseInt(page + 1);
+  for(let link of precLink) {
+    link.hidden = true;
+  }
+  for(let indexPage of numPage) {
+    indexPage.innerText = parseInt(page + 1);
+  }
 }
 
-precLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  page--;
-  console.log(page);
-  if (page == 0) {
-    numPage.innerText = parseInt(page + 1);
-    display();
-    precLink.hidden = true;
-  } else {
-    suivLink.hidden = false;
-    numPage.innerText = parseInt(page + 1);
-    display();
-  }
-});
+for(let link of precLink) {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    page--;
+    if (page == 0) {
+      for(let indexPage of numPage) {
+        indexPage.innerText = parseInt(page + 1);
+      }
+      display();
+      for(let linkPrec of precLink) {
+        linkPrec.hidden = true;
+      }
+    } else {
+      for(let linkSuiv of suivLink) {
+        linkSuiv.hidden = false;
+      }
+      for(let indexPage of numPage) {
+        indexPage.innerText = parseInt(page + 1);
+      }
+      display();
+    }
+  });
+}
 
-suivLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  page++;
-  console.log(page);
-  firstIndex = page * 25;
-  lastIndex = firstIndex + 25;
-  console.log(firstIndex, lastIndex, pokemonNormal.length);
-  if (lastIndex + 1 >= pokemonNormal.length) {
-    suivLink.hidden = true;
-    numPage.innerText = parseInt(page + 1);
-    display();
-  } else {
-    precLink.hidden = false;
-    numPage.innerText = parseInt(page + 1);
-    display();
-  }
-});
+for(let link of suivLink) {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    page++;
+    firstIndex = page * 25;
+    lastIndex = firstIndex + 25;
+
+    if (lastIndex + 1 >= pokemonNormal.length) {
+      for(let linkSuiv of suivLink) {
+        linkSuiv.hidden = true;
+      }
+      for(let indexPage of numPage) {
+        indexPage.innerText = parseInt(page + 1);
+      }
+      display();
+    } else {
+      for(let linkPrec of precLink) {
+        linkPrec.hidden = false;
+      }
+      for(let indexPage of numPage) {
+        indexPage.innerText = parseInt(page + 1);
+      }
+      display();
+    }
+  });
+}
 
 // Ajout des variables manquantes dans nos pokemons
 for (let index = 0; index < pokemonNormal.length; index++) {
@@ -561,7 +582,6 @@ function sortAttack(sens) {
 
 function sortDefence(sens) {
   sortDefenceBtn = document.getElementById("sort-defence");
-  console.log(sortDefenceBtn.classList.contains("sorted-asc"));
   if (
     sortDefenceBtn.classList.contains("sorted-asc") ||
     !sortDefenceBtn.classList.contains("sorted-desc")
