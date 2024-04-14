@@ -150,6 +150,16 @@ for (let index = 0; index < pokemonNormal.length; index++) {
       }
     })];
 }
+function getImageTypes(types){
+  let imgTypes ='';
+  for (let index = 0; index < types.length; index++) {
+    imgTypes += `<img src=../img/Types/${types[index]}.png width= 40% />`;
+    if (index == 0 && types.length > 1) {
+      imgTypes += `</br>`;
+    }
+  }
+  return imgTypes;
+}
 
 display();
 
@@ -188,7 +198,7 @@ function display() {
     tdBd.innerText = pokemonNormal[i].base_defense;
 
     let tdType = document.createElement("td");
-    tdType.innerText = pokemonNormal[i].pokemon_type.toString();
+    tdType.innerHTML = getImageTypes(pokemonNormal[i].pokemon_type);
 
     let tdGen = document.createElement("td");
     tdGen.innerText = pokemonNormal[i].pokemon_generation;

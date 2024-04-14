@@ -9,7 +9,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     border: 2px solid #B4011E;
-    min-width: 980px;
+    
   }
   th,
   td {
@@ -143,9 +143,20 @@ header #filter-container div label{
 .pagination-container a:hover {
   background-color: #b43449;
 }
+@media screen and (max-width: 1250px) {
+  .scroll-container {
+    overflow-x: scroll;
+  }
+  img{
+    width : 80%;
+  }
+}
 
 @media screen and (max-width: 1100px) {
   .scroll-container {
     overflow-x: scroll;
+  }
+  img{
+    width : 100%;
   }
 }
